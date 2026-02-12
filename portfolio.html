@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Muhammad Ismail Khan – Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-alt: #020617;
+      --card: #020617;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56,189,248,0.12);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: rgba(148,163,184,0.3);
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 24px 60px rgba(15,23,42,0.7);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 52%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 32px 16px 64px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, rgba(15,23,42,0.96), rgba(15,23,42,0.9));
+      border-radius: 28px;
+      border: 1px solid rgba(148,163,184,0.4);
+      box-shadow: var(--shadow-soft);
+      padding: 32px;
+      backdrop-filter: blur(28px);
+    }
+
+    @media (min-width: 768px) {
+      body { padding: 48px 24px 80px; }
+      .container { padding: 40px; }
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Header */
+    .header {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .title-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+
+    .name {
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .role {
+      font-size: 0.95rem;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(56,189,248,0.4);
+      background: radial-gradient(circle at top left, var(--accent-soft), transparent);
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(15,23,42,0.8);
+      border: 1px solid rgba(30,64,175,0.5);
+    }
+
+    .pill span.label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+    }
+
+    .pill span.value {
+      font-size: 0.9rem;
+    }
+
+    /* Layout */
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr);
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    @media (min-width: 880px) {
+      .layout {
+        grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
+        gap: 28px;
+      }
+    }
+
+    .section {
+      margin-bottom: 22px;
+      padding: 18px 18px 16px;
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top left, rgba(15,23,42,1), rgba(15,23,42,0.94));
+      border: 1px solid rgba(51,65,85,0.9);
+      box-shadow: 0 18px 40px rgba(15,23,42,0.8);
+    }
+
+    .section-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .section-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      margin-left: 12px;
+      background: linear-gradient(90deg, rgba(148,163,184,0.5), transparent);
+    }
+
+    .about-text { font-size: 0.98rem; color: #d1d5db; }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .chip {
+      font-size: 0.83rem;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(15,23,42,0.8);
+      border: 1px solid rgba(30,64,175,0.8);
+      color: #e5e7eb;
+    }
+
+    .subsection {
+      margin-top: 10px;
+    }
+
+    .subsection-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .item {
+      padding: 10px 0;
+      border-top: 1px solid rgba(30,64,175,0.35);
+    }
+
+    .item:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .item-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 4px 10px;
+      margin-bottom: 4px;
+    }
+
+    .item-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .item-meta {
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .item-meta span + span::before {
+      content: " · ";
+    }
+
+    .item-desc {
+      font-size: 0.9rem;
+      color: #cbd5f5;
+      margin-bottom: 4px;
+    }
+
+    .item-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 2px;
+    }
+
+    .tag {
+      font-size: 0.78rem;
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      background: rgba(15,23,42,0.85);
+      border: 1px solid rgba(56,189,248,0.5);
+      color: var(--accent);
+    }
+
+    ul { padding-left: 18px; margin-top: 4px; }
+    li { font-size: 0.9rem; margin-bottom: 3px; color: #cbd5f5; }
+
+    .footer {
+      margin-top: 12px;
+      text-align: right;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <div class="title-row">
+        <div class="name">Muhammad Ismail Khan</div>
+        <div class="role">Your Role (e.g. Machine Learning Engineer)</div>
+      </div>
+
+      <div class="contact">
+        <div class="pill">
+          <span class="label">Phone</span>
+          <span class="value">+92-335-5082725</span>
+        </div>
+        <div class="pill">
+          <span class="label">Email</span>
+          <span class="value"><a href="mailto:mik1122khan@gmail.com">mik1122khan@gmail.com</a></span>
+        </div>
+        <div class="pill">
+          <span class="label">Location</span>
+          <span class="value">Mardan, Pakistan</span>
+        </div>
+        <div class="pill">
+          <span class="label">GitHub</span>
+          <span class="value"><a href="https://github.com/MuhammadIsmailKhanMIK" target="_blank">github.com/MuhammadIsmailKhanMIK</a></span>
+        </div>
+        <div class="pill">
+          <span class="label">LinkedIn</span>
+          <span class="value"><a href="https://www.linkedin.com/in/muhammad-ismail-khan-273a592b5/" target="_blank">Profile</a></span>
+        </div>
+      </div>
+    </header>
+
+    <section class="layout">
+      <!-- Left column -->
+      <div>
+        <section class="section">
+          <h2 class="section-title">About</h2>
+          <p class="about-text">
+            Write 3–5 sentences here summarizing your background:
+            your core field (e.g. machine learning, data science),
+            years of experience or study, key strengths, and what
+            kind of roles or projects you are most interested in.
+          </p>
+        </section>
+
+        <section class="section">
+          <h2 class="section-title">Experience</h2>
+
+          <!-- Example item – replace with real roles from your CV -->
+          <div class="item">
+            <div class="item-header">
+              <div class="item-title">[Job / Internship Title]</div>
+              <div class="item-meta">
+                <span>[Company]</span>
+                <span>[City, Country]</span>
+                <span>[Start – End]</span>
+              </div>
+            </div>
+            <p class="item-desc">
+              One‑line summary of what you did and the impact.
+            </p>
+            <ul>
+              <li>Achievement or responsibility 1 with a concrete result.</li>
+              <li>Achievement or responsibility 2 (mention tools / models / metrics).</li>
+            </ul>
+            <div class="item-tags">
+              <span class="tag">Python</span>
+              <span class="tag">Machine Learning</span>
+              <!-- Add more tags from your CV -->
+            </div>
+          </div>
+
+          <!-- Duplicate the block above for more roles -->
+        </section>
+
+        <section class="section">
+          <h2 class="section-title">Projects</h2>
+
+          <div class="item">
+            <div class="item-header">
+              <div class="item-title">[Project Name]</div>
+              <div class="item-meta">
+                <span>[Year]</span>
+                <span>[Personal / Academic / Industrial]</span>
+              </div>
+            </div>
+            <p class="item-desc">
+              Short description of what the project does and why it matters.
+            </p>
+            <ul>
+              <li>Key technique or model used (e.g. CNN, LSTM, XGBoost).</li>
+              <li>Result: accuracy, F1, speedup, or business outcome.</li>
+            </ul>
+            <div class="item-tags">
+              <span class="tag">Machine Learning</span>
+              <span class="tag">Deep Learning</span>
+              <span class="tag">[Main Tech]</span>
+            </div>
+          </div>
+
+          <!-- Add more project items like this -->
+        </section>
+      </div>
+
+      <!-- Right column -->
+      <aside>
+        <section class="section">
+          <h2 class="section-title">Skills</h2>
+
+          <div class="subsection">
+            <div class="subsection-title">Machine Learning</div>
+            <div class="chips">
+              <span class="chip">Supervised / Unsupervised</span>
+              <span class="chip">Model Evaluation</span>
+              <span class="chip">Feature Engineering</span>
+              <!-- Replace / add based on your CV -->
+            </div>
+          </div>
+
+          <div class="subsection">
+            <div class="subsection-title">Deep Learning</div>
+            <div class="chips">
+              <span class="chip">Neural Networks</span>
+              <span class="chip">CNNs</span>
+              <span class="chip">RNN/LSTM</span>
+            </div>
+          </div>
+
+          <div class="subsection">
+            <div class="subsection-title">Programming & Tools</div>
+            <div class="chips">
+              <span class="chip">Python</span>
+              <span class="chip">[Add libraries: e.g. NumPy, Pandas]</span>
+              <span class="chip">[Add DL frameworks: e.g. TensorFlow, PyTorch]</span>
+              <span class="chip">Git</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2 class="section-title">Education</h2>
+
+          <div class="item">
+            <div class="item-header">
+              <div class="item-title">[Degree name]</div>
+              <div class="item-meta">
+                <span>[University]</span>
+                <span>[Years]</span>
+              </div>
+            </div>
+            <p class="item-desc">
+              Include your major, relevant coursework (e.g. Machine Learning, Deep Learning),
+              and any honors or notable achievements.
+            </p>
+          </div>
+
+          <!-- Add more education items if needed -->
+        </section>
+
+        <section class="section">
+          <h2 class="section-title">Contact</h2>
+          <p class="about-text">
+            Open to: [e.g. internships, full‑time roles, freelance projects].<br />
+            Best way to reach me is via email or LinkedIn.
+          </p>
+        </section>
+      </aside>
+    </section>
+
+    <div class="footer">
+      Last updated: <!-- update the date manually --> Feb 2026
+    </div>
+  </main>
+</body>
+</html>
